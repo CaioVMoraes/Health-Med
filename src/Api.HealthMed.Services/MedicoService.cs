@@ -14,10 +14,10 @@ namespace Api.HealthMed.Services
         {            
             Validations.ValidarMedico(novoMedico);
 
-            if (Validations.ValidarCPF(novoMedico.CPF))
+            if (!Validations.ValidarCPF(novoMedico.CPF))
                 throw new CPFInvalidoException();
 
-            if (Validations.ValidarEmail(novoMedico.Email))
+            if (!Validations.ValidarEmail(novoMedico.Email))
                 throw new EmailInvalidoException();            
             
             novoMedico.Senha = StringHelper.Criptografar(novoMedico.Senha);
