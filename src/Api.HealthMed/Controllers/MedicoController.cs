@@ -20,12 +20,25 @@ namespace Api.HealthMed.Controllers
         [HttpPost("Cadastrar")]
         public bool Cadastrar(Medico novoMedico)
         {
+            ArgumentNullException.ThrowIfNull(novoMedico);
+            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.Nome);
+            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.CPF);
+            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.Email);
+            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.Senha);
+
             return _medicoService.Cadastrar(novoMedico);
         }
 
         [HttpPost("Login")]
         public bool Login(Medico medico)
         {
+            ArgumentNullException.ThrowIfNullOrEmpty(medico.Senha);
+
+            if (string.IsNullOrEmpty(medico.CPF) && string.IsNullOrEmpty(medico.Email) && string.IsNullOrEmpty(medico.CRM))
+            {
+                throw new ArgumentException("Informe o e-mail ou CPF ou CRM para realizar o login!");
+            }
+
             return _medicoService.Login(medico);
         }
 

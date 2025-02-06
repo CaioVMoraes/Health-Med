@@ -1,3 +1,4 @@
+using Api.HealthMed.Helpers;
 using Api.HealthMed.Model;
 using Api.HealthMed.Services.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -20,12 +21,25 @@ namespace Api.HealthMed.Controllers
         [HttpPost("Cadastrar")]
         public bool Cadastrar(Paciente novoPaciente)
         {
+            ArgumentNullException.ThrowIfNull(novoPaciente);
+            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.Nome);
+            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.CPF);
+            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.Email);
+            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.Senha);
+
             return _pacienteService.Cadastrar(novoPaciente);
         }
 
         [HttpPost("Login")]
         public bool Login(Paciente paciente)
         {
+            ArgumentNullException.ThrowIfNullOrEmpty(paciente.Senha);
+
+            if (string.IsNullOrEmpty(paciente.CPF) && string.IsNullOrEmpty(paciente.Email))
+            {
+                throw new ArgumentException("Informe o e-mail ou CPF para realizar o login!");
+            }
+
             return _pacienteService.Login(paciente);
         }
 

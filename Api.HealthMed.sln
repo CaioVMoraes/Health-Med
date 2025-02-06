@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.HealthMed.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.HealthMed.DependencyInjection", "src\Api.HealthMed.DependencyInjection\Api.HealthMed.DependencyInjection.csproj", "{91530318-86E9-4134-81BC-C4DAB6F1B1FB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.HealthMed.Helpers", "src\Api.HealthMed.Helpers\Api.HealthMed.Helpers.csproj", "{5DF4F6C4-2D77-4E67-A923-8EA5DCEEAD69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{91530318-86E9-4134-81BC-C4DAB6F1B1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91530318-86E9-4134-81BC-C4DAB6F1B1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91530318-86E9-4134-81BC-C4DAB6F1B1FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF4F6C4-2D77-4E67-A923-8EA5DCEEAD69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF4F6C4-2D77-4E67-A923-8EA5DCEEAD69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF4F6C4-2D77-4E67-A923-8EA5DCEEAD69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF4F6C4-2D77-4E67-A923-8EA5DCEEAD69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
