@@ -1,4 +1,5 @@
 using Api.HealthMed.Model;
+using Api.HealthMed.Services.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.HealthMed.Controllers
@@ -8,35 +9,36 @@ namespace Api.HealthMed.Controllers
     public class MedicoController : ControllerBase
     {
         private readonly ILogger<MedicoController> _logger;
+        private readonly IMedicoService _medicoService;
 
-        public MedicoController(ILogger<MedicoController> logger)
+        public MedicoController(ILogger<MedicoController> logger, IMedicoService medicoService)
         {
             _logger = logger;
+            _medicoService = medicoService;
         }
 
-        [HttpPost]
+        [HttpPost("Cadastrar")]
         public bool Cadastrar(Medico novoMedico)
         {
-            throw new NotImplementedException();
+            return _medicoService.Cadastrar(novoMedico);
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         public bool Login(Medico medico)
         {
-            throw new NotImplementedException();
+            return _medicoService.Login(medico);
         }
 
-
-        [HttpPost]
+        [HttpPost("CadastrarHorario")]
         public bool CadastrarHorario(HorarioDisponivel horarioDisponivel)
         {
-            throw new NotImplementedException();
+            return _medicoService.CadastrarHorario(horarioDisponivel);
         }
 
-        [HttpPut]
+        [HttpPut("EditarHorario")]
         public bool EditarHorario(HorarioDisponivel horarioDisponivel)
         {
-            throw new NotImplementedException();
+            return _medicoService.EditarHorario(horarioDisponivel);
         }
     }
 }

@@ -1,4 +1,5 @@
 using Api.HealthMed.Model;
+using Api.HealthMed.Services.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.HealthMed.Controllers
@@ -8,34 +9,36 @@ namespace Api.HealthMed.Controllers
     public class PacienteController : ControllerBase
     {
         private readonly ILogger<PacienteController> _logger;
+        private readonly IPacienteService _pacienteService;
 
-        public PacienteController(ILogger<PacienteController> logger)
+        public PacienteController(ILogger<PacienteController> logger, IPacienteService pacienteService)
         {
             _logger = logger;
+            _pacienteService = pacienteService;
         }
 
-        [HttpPost]
+        [HttpPost("Cadastrar")]
         public bool Cadastrar(Paciente novoPaciente)
         {
-            throw new NotImplementedException();
+            return _pacienteService.Cadastrar(novoPaciente);
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         public bool Login(Paciente paciente)
         {
-            throw new NotImplementedException();
+            return _pacienteService.Login(paciente);
         }
 
-        [HttpGet]
+        [HttpGet("ListarMedicos")]
         public IEnumerable<Medico> ListarMedicos()
         {
-            throw new NotImplementedException();
+            return _pacienteService.ListarMedicos();
         }
 
-        [HttpPost]
+        [HttpPost("CadastrarAgendamento")]
         public bool CadastrarAgendamento(Agendamento agendamento)
         {
-            throw new NotImplementedException();
+            return _pacienteService.CadastrarAgendamento(agendamento);
         }
     }
 }
