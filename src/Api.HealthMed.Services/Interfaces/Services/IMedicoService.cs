@@ -6,7 +6,7 @@ namespace Api.HealthMed.Services.Interfaces.Services
     {
         bool Cadastrar(Medico novoMedico);
         bool Login(Medico medico);
-        bool CadastrarHorario(HorarioDisponivel horarioDisponivel);
-        bool EditarHorario(HorarioDisponivel horarioDisponivel);
+        bool CadastrarHorario(ConsultaDisponivel consultaDisponivel);
+        bool EditarHorario(ConsultaDisponivel consultaDisponivel);
     }
 }

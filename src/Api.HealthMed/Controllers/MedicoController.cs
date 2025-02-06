@@ -1,6 +1,7 @@
 using Api.HealthMed.Model;
 using Api.HealthMed.Services.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using static Api.HealthMed.Helpers.Exceptions.CustomExceptions;
 
 namespace Api.HealthMed.Controllers
 {
@@ -18,16 +19,13 @@ namespace Api.HealthMed.Controllers
         }
 
         [HttpPost("Cadastrar")]
-        public bool Cadastrar(Medico novoMedico)
+        public IActionResult Cadastrar(Medico novoMedico)
         {
-            ArgumentNullException.ThrowIfNull(novoMedico);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.Nome);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.CPF);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.Email);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.Senha);
-
-            return _medicoService.Cadastrar(novoMedico);
+            _medicoService.Cadastrar(novoMedico);
+            return Ok("Médico cadastrado com sucesso!");
         }
+
+
 
         [HttpPost("Login")]
         public bool Login(Medico medico)
@@ -43,15 +41,15 @@ namespace Api.HealthMed.Controllers
         }
 
         [HttpPost("CadastrarHorario")]
-        public bool CadastrarHorario(HorarioDisponivel horarioDisponivel)
+        public bool CadastrarHorario(ConsultaDisponivel consultaDisponivel)
         {
-            return _medicoService.CadastrarHorario(horarioDisponivel);
+            return _medicoService.CadastrarHorario(consultaDisponivel);
         }
 
         [HttpPut("EditarHorario")]
-        public bool EditarHorario(HorarioDisponivel horarioDisponivel)
+        public bool EditarHorario(ConsultaDisponivel consultaDisponivel)
         {
-            return _medicoService.EditarHorario(horarioDisponivel);
+            return _medicoService.EditarHorario(consultaDisponivel);
         }
     }
 }

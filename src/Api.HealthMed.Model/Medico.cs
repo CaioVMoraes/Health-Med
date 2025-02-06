@@ -8,6 +8,7 @@ namespace Api.HealthMed.Model
         public string? CRM { get; set; }
         public string? Email { get; set; }
         public string? Senha { get; set; }
+        public string? Especializacao { get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
     }

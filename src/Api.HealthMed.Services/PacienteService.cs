@@ -2,6 +2,7 @@
 using Api.HealthMed.Infrastructure.Interfaces.Repositories;
 using Api.HealthMed.Model;
 using Api.HealthMed.Services.Interfaces.Services;
+using static Api.HealthMed.Helpers.Exceptions.CustomExceptions;
 
 namespace Api.HealthMed.Services
 {
@@ -11,13 +12,14 @@ namespace Api.HealthMed.Services
 
         public bool Cadastrar(Paciente novoPaciente)
         {
-            ArgumentNullException.ThrowIfNull(novoPaciente);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.CPF);
+            Validations.ValidarPaciente(novoPaciente);
 
-            if (StringHelper.ValidarCPF(novoPaciente.CPF))
-                throw new ArgumentException("CPF inválido");
+            if (Validations.ValidarCPF(novoPaciente.CPF))
+                throw new CPFInvalidoException();
 
-            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.Senha);
+            if (Validations.ValidarEmail(novoPaciente.Email))
+                throw new EmailInvalidoException();
+
             novoPaciente.Senha = StringHelper.Criptografar(novoPaciente.Senha);
 
             return _pacienteRepository.Cadastrar(novoPaciente);

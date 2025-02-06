@@ -1,4 +1,6 @@
 using Api.HealthMed.DependencyInjection;
+using Api.HealthMed.Middlewares; 
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +21,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

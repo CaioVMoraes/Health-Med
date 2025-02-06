@@ -15,12 +15,12 @@ namespace Api.HealthMed.Infrastructure.Repositories
             return false;
         }
 
-        public bool CadastrarHorario(HorarioDisponivel horarioDisponivel)
+        public bool CadastrarHorario(ConsultaDisponivel consultaDisponivel)
         {
             return false;
         }
 
-        public bool EditarHorario(HorarioDisponivel horarioDisponivel)
+        public bool EditarHorario(ConsultaDisponivel consultaDisponivel)
         {
             return false;
         }

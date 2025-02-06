@@ -2,6 +2,7 @@
 using Api.HealthMed.Infrastructure.Interfaces.Repositories;
 using Api.HealthMed.Model;
 using Api.HealthMed.Services.Interfaces.Services;
+using static Api.HealthMed.Helpers.Exceptions.CustomExceptions;
 
 namespace Api.HealthMed.Services
 {
@@ -10,14 +11,15 @@ namespace Api.HealthMed.Services
         private readonly IMedicoRepository _medicoRepository = medicoRepository;
 
         public bool Cadastrar(Medico novoMedico)
-        {
-            ArgumentNullException.ThrowIfNull(novoMedico);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.CPF);
+        {            
+            Validations.ValidarMedico(novoMedico);
 
-            if (StringHelper.ValidarCPF(novoMedico.CPF))
-                throw new ArgumentException("CPF inválido");
+            if (Validations.ValidarCPF(novoMedico.CPF))
+                throw new CPFInvalidoException();
 
-            ArgumentNullException.ThrowIfNullOrEmpty(novoMedico.Senha);
+            if (Validations.ValidarEmail(novoMedico.Email))
+                throw new EmailInvalidoException();            
+            
             novoMedico.Senha = StringHelper.Criptografar(novoMedico.Senha);
 
             return _medicoRepository.Cadastrar(novoMedico);
@@ -31,14 +33,14 @@ namespace Api.HealthMed.Services
             return _medicoRepository.Login(medico);
         }
 
-        public bool CadastrarHorario(HorarioDisponivel horarioDisponivel)
+        public bool CadastrarHorario(ConsultaDisponivel consultaDisponivel)
         {
-            return _medicoRepository.CadastrarHorario(horarioDisponivel);
+            return _medicoRepository.CadastrarHorario(consultaDisponivel);
         }
 
-        public bool EditarHorario(HorarioDisponivel horarioDisponivel)
+        public bool EditarHorario(ConsultaDisponivel consultaDisponivel)
         {
-            return _medicoRepository.EditarHorario(horarioDisponivel);
+            return _medicoRepository.EditarHorario(consultaDisponivel);
         }
     }
 }
