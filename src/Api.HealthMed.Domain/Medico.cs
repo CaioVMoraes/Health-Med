@@ -1,4 +1,4 @@
-namespace Api.HealthMed.Model
+namespace Api.HealthMed.Domain
 {
     public class Medico
     {

@@ -1,6 +1,6 @@
-﻿using Api.HealthMed.Model;
+﻿using Api.HealthMed.Domain;
 
-namespace Api.HealthMed.Services.Interfaces.Services
+namespace Api.HealthMed.Application.Interfaces.Services
 {
     public interface IMedicoService
     {

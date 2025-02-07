@@ -1,5 +1,5 @@
 using Api.HealthMed.DependencyInjection;
-using Api.HealthMed.Middlewares; 
+using Api.HealthMed.Middlewares;
 
 
 var builder = WebApplication.CreateBuilder(args);

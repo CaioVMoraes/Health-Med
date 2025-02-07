@@ -36,11 +36,11 @@ namespace Api.HealthMed.Middlewares
             context.Response.StatusCode = ex switch
             {
                 CPFVazioException
-                or EmailVazioException 
+                or EmailVazioException
                 or SenhaVaziaException
-                or CRMVazioException 
+                or CRMVazioException
                 or CPFInvalidoException
-                or EmailInvalidoException 
+                or EmailInvalidoException
                 or MedicoInvalidoException => (int)HttpStatusCode.BadRequest, // 400
 
                 _ => (int)HttpStatusCode.InternalServerError // 500 para outras exceções

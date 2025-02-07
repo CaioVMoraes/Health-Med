@@ -1,5 +1,5 @@
-using Api.HealthMed.Services;
-using Api.HealthMed.Services.Interfaces.Services;
+using Api.HealthMed.Application;
+using Api.HealthMed.Application.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.HealthMed.DependencyInjection.Extensions.AddApplicationLayer;

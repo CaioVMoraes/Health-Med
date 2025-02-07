@@ -1,7 +1,6 @@
-using Api.HealthMed.Model;
-using Api.HealthMed.Services.Interfaces.Services;
+using Api.HealthMed.Application.Interfaces.Services;
+using Api.HealthMed.Domain;
 using Microsoft.AspNetCore.Mvc;
-using static Api.HealthMed.Helpers.Exceptions.CustomExceptions;
 
 namespace Api.HealthMed.Controllers
 {

@@ -5,9 +5,9 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.HealthMed", "src\Api.HealthMed\Api.HealthMed.csproj", "{5838D2C5-A4F2-47A0-B5AF-EE1F0274E503}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.HealthMed.Services", "src\Api.HealthMed.Services\Api.HealthMed.Services.csproj", "{E1C121DD-5CBD-421C-BF69-2769C1BFB2F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.HealthMed.Application", "src\Api.HealthMed.Application\Api.HealthMed.Application.csproj", "{E1C121DD-5CBD-421C-BF69-2769C1BFB2F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.HealthMed.Model", "src\Api.HealthMed.Model\Api.HealthMed.Model.csproj", "{B025D8E6-B0E8-44B6-AD66-A902F7B7523B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.HealthMed.Domain", "src\Api.HealthMed.Domain\Api.HealthMed.Domain.csproj", "{B025D8E6-B0E8-44B6-AD66-A902F7B7523B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.HealthMed.Infrastructure", "src\Api.HealthMed.Infrastructure\Api.HealthMed.Infrastructure.csproj", "{A791F47E-D0B5-47BA-9525-FBDD9D671CD2}"
 EndProject

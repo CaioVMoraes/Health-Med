@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Api.HealthMed.Helpers\Api.HealthMed.Helpers.csproj" />
     <ProjectReference Include="..\Api.HealthMed.Infrastructure\Api.HealthMed.Infrastructure.csproj" />
-    <ProjectReference Include="..\Api.HealthMed.Model\Api.HealthMed.Model.csproj" />
+    <ProjectReference Include="..\Api.HealthMed.Domain\Api.HealthMed.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,8 @@
-﻿using Dapper;
+﻿using Api.HealthMed.Domain;
 using Api.HealthMed.Infrastructure.Interfaces.Connection;
 using Api.HealthMed.Infrastructure.Interfaces.Repositories;
-using Api.HealthMed.Model;
+using Dapper;
 using System.Data;
-using System.Transactions;
 
 namespace Api.HealthMed.Infrastructure.Repositories
 {

@@ -1,4 +1,4 @@
-namespace Api.HealthMed.Model
+namespace Api.HealthMed.Domain
 {
     public class Agendamento
     {
@@ -9,7 +9,7 @@ namespace Api.HealthMed.Model
         public bool MedicoAceitou { get; set; }
         public bool MedicoRecusou { get; set; }
         public bool PacienteCancelou { get; set; }
-        public string? JustifcativaCancelamento { get; set; }        
+        public string? JustifcativaCancelamento { get; set; }
         public bool Ativo { get; set; }
     }
 }

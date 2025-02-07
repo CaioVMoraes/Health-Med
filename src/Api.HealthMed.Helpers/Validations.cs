@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Api.HealthMed.Domain;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Api.HealthMed.Model;
 using static Api.HealthMed.Helpers.Exceptions.CustomExceptions;
 
 namespace Api.HealthMed.Helpers
@@ -60,7 +55,7 @@ namespace Api.HealthMed.Helpers
 
         public static void ValidarMedico(Medico medico)
         {
-            if(string.IsNullOrWhiteSpace(medico.Nome))
+            if (string.IsNullOrWhiteSpace(medico.Nome))
                 throw new NomeVazioException();
 
             if (string.IsNullOrWhiteSpace(medico.CPF))
@@ -74,7 +69,7 @@ namespace Api.HealthMed.Helpers
 
             if (string.IsNullOrWhiteSpace(medico.Senha))
                 throw new SenhaVaziaException();
-                
+
             if (string.IsNullOrWhiteSpace(medico.Especializacao))
                 throw new EspecializacaoVazioException();
         }

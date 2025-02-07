@@ -1,6 +1,5 @@
-using Api.HealthMed.Helpers;
-using Api.HealthMed.Model;
-using Api.HealthMed.Services.Interfaces.Services;
+using Api.HealthMed.Application.Interfaces.Services;
+using Api.HealthMed.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.HealthMed.Controllers

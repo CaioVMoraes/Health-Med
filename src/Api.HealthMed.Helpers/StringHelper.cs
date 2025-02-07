@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using static BCrypt.Net.BCrypt;
+﻿using static BCrypt.Net.BCrypt;
 
 namespace Api.HealthMed.Helpers
 {
@@ -10,6 +9,6 @@ namespace Api.HealthMed.Helpers
         public static string Criptografar(string text)
         {
             return HashPassword(text, WorkFactor);
-        }       
+        }
     }
 }

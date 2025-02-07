@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Api.HealthMed.Infrastructure\Api.HealthMed.Infrastructure.csproj" />
-    <ProjectReference Include="..\Api.HealthMed.Services\Api.HealthMed.Services.csproj" />
+    <ProjectReference Include="..\Api.HealthMed.Application\Api.HealthMed.Application.csproj" />
   </ItemGroup>
 
 </Project>

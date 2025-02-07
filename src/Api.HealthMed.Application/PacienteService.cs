@@ -1,10 +1,10 @@
-﻿using Api.HealthMed.Helpers;
+﻿using Api.HealthMed.Application.Interfaces.Services;
+using Api.HealthMed.Domain;
+using Api.HealthMed.Helpers;
 using Api.HealthMed.Infrastructure.Interfaces.Repositories;
-using Api.HealthMed.Model;
-using Api.HealthMed.Services.Interfaces.Services;
 using static Api.HealthMed.Helpers.Exceptions.CustomExceptions;
 
-namespace Api.HealthMed.Services
+namespace Api.HealthMed.Application
 {
     public class PacienteService(IPacienteRepository pacienteRepository) : IPacienteService
     {

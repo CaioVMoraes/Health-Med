@@ -1,14 +1,8 @@
-﻿using Api.HealthMed.Infrastructure.Interfaces.Connection;
-using Microsoft.Extensions.Options;
-using Api.HealthMed.Model.Settings;
+﻿using Api.HealthMed.Domain.Settings;
+using Api.HealthMed.Infrastructure.Interfaces.Connection;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
+using Microsoft.Extensions.Options;
 using System.Data;
-using System.Linq;
-using System.Runtime;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.HealthMed.Infrastructure.Connection
 {

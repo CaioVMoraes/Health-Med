@@ -1,5 +1,5 @@
-﻿using Api.HealthMed.Infrastructure.Interfaces.Repositories;
-using Api.HealthMed.Model;
+﻿using Api.HealthMed.Domain;
+using Api.HealthMed.Infrastructure.Interfaces.Repositories;
 
 namespace Api.HealthMed.Infrastructure.Repositories
 {
