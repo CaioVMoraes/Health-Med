@@ -1,13 +1,26 @@
-﻿using Api.HealthMed.Infrastructure.Interfaces.Repositories;
+﻿using Dapper;
+using Api.HealthMed.Infrastructure.Interfaces.Connection;
+using Api.HealthMed.Infrastructure.Interfaces.Repositories;
 using Api.HealthMed.Model;
+using System.Data;
+using System.Transactions;
 
 namespace Api.HealthMed.Infrastructure.Repositories
 {
-    public class MedicoRepository : IMedicoRepository
+    public class MedicoRepository(IDatabaseConnection dbConnection) : IMedicoRepository
     {
-        public bool Cadastrar(Medico novoMedico)
+        private readonly IDatabaseConnection _dbConnection = dbConnection;
+
+        public async Task<int> CadastrarMedico(Medico novoMedico)
         {
-            return false;
+            using IDbConnection conn = _dbConnection.AbrirConexao();
+
+            string query = @"
+                            INSERT INTO Medico (Nome, CPF, CRM, Email, Senha, Especializacao, DataCadastro, Ativo) 
+                            VALUES (@Nome, @CPF, @CRM, @Email, @Senha, @Especializacao, GETDATE(), 1)"
+            ;
+
+            return await conn.QuerySingleAsync<int>(query);
         }
 
         public bool Login(Medico medico)

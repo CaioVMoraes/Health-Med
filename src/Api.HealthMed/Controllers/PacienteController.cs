@@ -19,15 +19,10 @@ namespace Api.HealthMed.Controllers
         }
 
         [HttpPost("Cadastrar")]
-        public bool Cadastrar(Paciente novoPaciente)
+        public IActionResult Cadastrar(Paciente novoPaciente)
         {
-            ArgumentNullException.ThrowIfNull(novoPaciente);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.Nome);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.CPF);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.Email);
-            ArgumentNullException.ThrowIfNullOrEmpty(novoPaciente.Senha);
-
-            return _pacienteService.Cadastrar(novoPaciente);
+            _pacienteService.Cadastrar(novoPaciente);
+            return Ok("Médico cadastrado com sucesso!");
         }
 
         [HttpPost("Login")]

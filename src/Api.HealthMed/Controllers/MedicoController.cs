@@ -21,7 +21,7 @@ namespace Api.HealthMed.Controllers
         [HttpPost("Cadastrar")]
         public IActionResult Cadastrar(Medico novoMedico)
         {
-            _medicoService.Cadastrar(novoMedico);
+            _medicoService.CadastrarMedico(novoMedico);
             return Ok("Médico cadastrado com sucesso!");
         }
 
