@@ -106,15 +106,49 @@ namespace Api.HealthMed.Controllers
         }
 
         [HttpPost("CadastrarAgendamento")]
-        public bool CadastrarAgendamento(Agendamento agendamento)
+        public ActionResult<Retorno> CadastrarAgendamento(Agendamento agendamento)
         {
-            return _pacienteService.CadastrarAgendamento(agendamento);
+            try
+            {
+                _pacienteService.CadastrarAgendamento(agendamento);
+
+                return Created(string.Empty, new Retorno
+                {
+                    Sucesso = true,
+                    Mensagem = "Agendamento cadastrado com sucesso."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new Retorno
+                {
+                    Sucesso = false,
+                    Mensagem = $"Erro ao cadastrar o agendamento: {ex.Message}"
+                });
+            }
         }
 
         [HttpPut("CancelaAgendamento")]
-        public bool CancelaAgendamento(Agendamento agendamento)
+        public ActionResult<Retorno> CancelaAgendamento(Agendamento agendamento)
         {
-            return _pacienteService.CancelaAgendamento(agendamento);
+            try
+            {
+                _pacienteService.CancelaAgendamento(agendamento);
+
+                return Ok(new Retorno
+                {
+                    Sucesso = true,
+                    Mensagem = "Agendamento cancelado com sucesso."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new Retorno
+                {
+                    Sucesso = false,
+                    Mensagem = $"Erro ao cancelar o agendamento: {ex.Message}"
+                });
+            }
         }
     }
 }
