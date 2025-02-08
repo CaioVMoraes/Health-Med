@@ -47,14 +47,40 @@ namespace Api.HealthMed.Infrastructure.Repositories
             return conn.QueryFirstOrDefault<string>(query, new { @CRM = crm }) ?? throw new UnauthorizedAccessException("Não foi possível localizar o usuário com esse CRM.");
         }
 
-        public bool CadastrarHorario(ConsultaDisponivel consultaDisponivel)
+        public bool CadastrarConsulta(ConsultaDisponivel consultaDisponivel)
         {
-            return false;
+            using IDbConnection conn = _dbConnection.AbrirConexao();
+
+            string query = @"                            
+                            INSERT INTO ConsultaDisponivel
+                                       (IdMedico
+                                       ,DataHora
+                                       ,Disponivel
+                                       ,ValorConsulta)
+                                 VALUES
+                                       (@IdMedico
+                                       ,@DataHora
+                                       ,@Disponivel
+                                       ,@ValorConsulta)"
+            ;
+
+            return conn.Execute(query, consultaDisponivel) > 0;
         }
 
-        public bool EditarHorario(ConsultaDisponivel consultaDisponivel)
+        public bool EditarConsulta(ConsultaDisponivel consultaDisponivel)
         {
-            return false;
+            using IDbConnection conn = _dbConnection.AbrirConexao();
+
+            string query = @"                            
+                            UPDATE ConsultaDisponivel
+                               SET IdMedico = @IdMedico
+                                  ,DataHora = @DataHora
+                                  ,Disponivel = @Disponivel
+                                  ,ValorConsulta = @ValorConsulta
+                             WHERE Id = @Id"
+            ;
+
+            return conn.Execute(query, consultaDisponivel) > 0;
         }
     }
 }

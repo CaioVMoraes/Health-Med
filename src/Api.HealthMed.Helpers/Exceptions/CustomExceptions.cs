@@ -19,6 +19,8 @@
         public class SenhaVaziaException() : Exception(message: $"Por favor, preencha o campo \"Senha\"!");
 
         public class EspecializacaoVazioException() : Exception(message: $"Por favor, preencha o campo \"CPF\"!");
+        public class IdMedicoVazioException() : Exception(message: $"Por favor, preencha o campo \"Médico Escolhido\"!");
+        public class DataConsultaInvalidaException() : Exception(message: $"O campo \"Data\" é inválido!");
 
         public class SenhaIncorretaException() : Exception(message: $"A senha é incorreta!");
 
@@ -31,7 +33,6 @@
 
         public class MedicoInvalidoException() : Exception(message: $"Os dados do médico estão inválidos!");
         public class PacienteInvalidoException() : Exception(message: $"Os dados do paciente estão inválidos!");
-
-
+        public class ConsultaInvalidoException() : Exception(message: $"Os dados da consulta estão inválidos!");
     }
 }

@@ -54,8 +54,8 @@ namespace Api.HealthMed.Infrastructure.Repositories
                                 Medico WITH (NOLOCK)
                              WHERE
                                 EXISTS (
-                                    SELECT COUNT(*) FROM ConsultaDisponivel WITH (NOLOCK)
-                                    WHERE ConsultaDisponivel.IdMedico = Medico.Id AND Disponivel = 1
+                                    SELECT * FROM ConsultaDisponivel WITH (NOLOCK)
+                                    WHERE ConsultaDisponivel.IdMedico = Medico.Id AND Disponivel = 1 AND ConsultaDisponivel.DataHora >= DATEADD(day, 1, GETDATE())
                                 )
                             ";
 

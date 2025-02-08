@@ -6,7 +6,7 @@ namespace Api.HealthMed.Infrastructure.Interfaces.Repositories
     {
         bool Cadastrar(Medico novoMedico);
         string GetSenha(string crm);
-        bool CadastrarHorario(ConsultaDisponivel consultaDisponivel);
-        bool EditarHorario(ConsultaDisponivel consultaDisponivel);
+        bool CadastrarConsulta(ConsultaDisponivel consultaDisponivel);
+        bool EditarConsulta(ConsultaDisponivel consultaDisponivel);
     }
 }

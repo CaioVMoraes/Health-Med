@@ -95,5 +95,20 @@ namespace Api.HealthMed.Helpers
                 throw new SenhaVaziaException();
 
         }
+
+        public static void ValidarConsulta(ConsultaDisponivel consulta)
+        {
+            if (consulta is null)
+                throw new ConsultaInvalidoException();
+
+            if (consulta.IdMedico <= 0)
+                throw new IdMedicoVazioException();
+
+            DateTime dataMinima = DateTime.Now;
+            DateTime dataMaxima = DateTime.Now.AddYears(1);
+
+            if (!DateHelper.ValidarData(consulta.DataHora, dataMinima, dataMaxima))
+                throw new DataConsultaInvalidaException();
+        }
     }
 }

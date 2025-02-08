@@ -97,17 +97,17 @@ namespace Api.HealthMed.Controllers
             }
         }
 
-        [HttpPost("CadastrarHorario")]
-        public ActionResult<Retorno> CadastrarHorario(ConsultaDisponivel consultaDisponivel)
+        [HttpPost("CadastrarConsulta")]
+        public ActionResult<Retorno> CadastrarConsulta(ConsultaDisponivel consultaDisponivel)
         {
             try
             {
-                _medicoService.CadastrarHorario(consultaDisponivel);
+                _medicoService.CadastrarConsulta(consultaDisponivel);
 
                 return Created(string.Empty, new Retorno
                 {
                     Sucesso = true,
-                    Mensagem = "Horário cadastrado com sucesso."
+                    Mensagem = "Consulta cadastrado com sucesso."
                 });
             }
             catch (Exception ex)
@@ -115,22 +115,22 @@ namespace Api.HealthMed.Controllers
                 return StatusCode(500, new Retorno
                 {
                     Sucesso = false,
-                    Mensagem = $"Erro ao cadastrar horário: {ex.Message}"
+                    Mensagem = $"Erro ao cadastrar consulta: {ex.Message}"
                 });
             }
         }
 
-        [HttpPut("EditarHorario")]
-        public ActionResult<Retorno> EditarHorario(ConsultaDisponivel consultaDisponivel)
+        [HttpPut("EditarConsulta")]
+        public ActionResult<Retorno> EditarConsulta(ConsultaDisponivel consultaDisponivel)
         {
             try
             {
-                _medicoService.EditarHorario(consultaDisponivel);
+                _medicoService.EditarConsulta(consultaDisponivel);
 
                 return Ok(new Retorno
                 {
                     Sucesso = true,
-                    Mensagem = "Horário atualizado com sucesso."
+                    Mensagem = "Consulta atualizado com sucesso."
                 });
             }
             catch (Exception ex)
@@ -138,7 +138,7 @@ namespace Api.HealthMed.Controllers
                 return StatusCode(500, new Retorno
                 {
                     Sucesso = false,
-                    Mensagem = $"Erro ao atualizar o horário: {ex.Message}"
+                    Mensagem = $"Erro ao atualizar o consulta: {ex.Message}"
                 });
             }
         }

@@ -39,14 +39,18 @@ namespace Api.HealthMed.Application
             }
         }
 
-        public bool CadastrarHorario(ConsultaDisponivel consultaDisponivel)
+        public bool CadastrarConsulta(ConsultaDisponivel consultaDisponivel)
         {
-            return _medicoRepository.CadastrarHorario(consultaDisponivel);
+            Validations.ValidarConsulta(consultaDisponivel);
+
+            return _medicoRepository.CadastrarConsulta(consultaDisponivel);
         }
 
-        public bool EditarHorario(ConsultaDisponivel consultaDisponivel)
+        public bool EditarConsulta(ConsultaDisponivel consultaDisponivel)
         {
-            return _medicoRepository.EditarHorario(consultaDisponivel);
+            Validations.ValidarConsulta(consultaDisponivel);
+
+            return _medicoRepository.EditarConsulta(consultaDisponivel);
         }
     }
 }
