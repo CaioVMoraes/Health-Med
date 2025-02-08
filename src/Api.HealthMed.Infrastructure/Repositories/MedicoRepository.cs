@@ -56,12 +56,14 @@ namespace Api.HealthMed.Infrastructure.Repositories
                                        (IdMedico
                                        ,DataHora
                                        ,Disponivel
-                                       ,ValorConsulta)
+                                       ,ValorConsulta
+                                       ,DataCadastro)
                                  VALUES
                                        (@IdMedico
                                        ,@DataHora
                                        ,@Disponivel
-                                       ,@ValorConsulta)"
+                                       ,@ValorConsulta
+                                       ,@DataCadastro)"
             ;
 
             return conn.Execute(query, consultaDisponivel) > 0;

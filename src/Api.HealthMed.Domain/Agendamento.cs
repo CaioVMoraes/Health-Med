@@ -9,7 +9,7 @@ namespace Api.HealthMed.Domain
         public bool MedicoAceitou { get; set; }
         public bool MedicoRecusou { get; set; }
         public bool PacienteCancelou { get; set; }
-        public string? JustifcativaCancelamento { get; set; }
+        public string? JustificativaCancelamento { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime DataAtualizacao { get; set; }

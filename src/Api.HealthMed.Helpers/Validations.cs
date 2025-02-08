@@ -125,7 +125,7 @@ namespace Api.HealthMed.Helpers
             if (agendamento.IdConsulta <= 0)
                 throw new HorarioConsultaInvalidoException();
 
-            if (agendamento.PacienteCancelou && string.IsNullOrEmpty(agendamento.JustifcativaCancelamento))
+            if (agendamento.PacienteCancelou && string.IsNullOrEmpty(agendamento.JustificativaCancelamento))
                 throw new JustificativaCancelouAgendamentoVaziaException();
         }
     }
