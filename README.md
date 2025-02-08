@@ -7,12 +7,14 @@ A API do Health&Med é um sistema para gerenciamento de consultas médicas, perm
 - **SQL Server**
 - **Swagger** (para documentação da API)
 - **Bcript** (para reforçar a criptografia)
+- **Docker Hub**
 
 ## Arquitetura do Projeto
 O projeto segue a Clean Architecture, dividida nas seguintes camadas:
 
 - **Application**: Contém os serviços e regras de negócio.
-- **Crosscutting**: Helpers e injeção de dependências.
+- **Helpers**: Ferramentas utilitárias do projeto.
+- **DependencyInjection**: injeção de dependências.
 - **Domain**: Define entidades e configurações.
 - **Infrastructure**: Implementação dos repositórios e acesso ao banco de dados.
 - **Presentation**: Contém os controllers da API.
@@ -24,6 +26,7 @@ O projeto segue a Clean Architecture, dividida nas seguintes camadas:
 - [x] Autenticação do Paciente
 - [x] Busca por Médicos
 - [x] Agendamento de Consultas
+- [x] Cancelamento de Consultas
 
 ## Configuração do Banco de Dados
 Para conectar ao SQL Server, ajuste a **Connection String** no arquivo `appsettings.json`: Utilizando as tabelas salvas dentro do projeto na pasta **Requirements**
@@ -48,7 +51,7 @@ Para conectar ao SQL Server, ajuste a **Connection String** no arquivo `appsetti
 ## Pipeline de CI/CD
 O projeto inclui um pipeline de CI/CD utilizando **GitHub Actions**. Ele realiza:
 - Build e execução
-- Deploy automatizado
+- Deploy automatizado com Docker Hub
 
 ## Aviso 
 Este projeto foi desenvolvido como parte de um trabalho acadêmico na pós-graduação.
