@@ -16,13 +16,13 @@ namespace Api.HealthMed.Infrastructure.Repositories
             return false;
         }
 
-        public bool Login(string emailCpf, string senha)
+        public string GetSenha(string emailCpf)
         {
             using IDbConnection conn = _dbConnection.AbrirConexao();
 
-            string query = @"SELECT COUNT(*) FROM Paciente WITH (NOLOCK) WHERE Senha = @Senha AND (Email = @EmailCPF OR CPF = @EmailCPF)";
+            string query = @"SELECT TOP 1 Senha FROM Paciente WITH (NOLOCK) WHERE Email = @EmailCPF OR CPF = @EmailCPF";
 
-            return conn.QueryFirstOrDefault<int>(query, new { @EmailCPF = emailCpf, @Senha = senha }) > 0;
+            return conn.QueryFirstOrDefault<string>(query, new { @EmailCPF = emailCpf}) ?? throw new UnauthorizedAccessException("Não foi possível localizar esse usuário.");
         }
 
         public IEnumerable<Medico> ListarMedicos()

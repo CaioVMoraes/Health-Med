@@ -25,22 +25,62 @@ namespace Api.HealthMed.Controllers
         }
 
         [HttpPost("Login")]
-        public bool Login(string emailCpf, string senha)
+        public ActionResult<Retorno> Login(string emailCpf, string senha)
         {
-            if (string.IsNullOrEmpty(emailCpf) && string.IsNullOrEmpty(senha))
+            try
             {
-                throw new ArgumentException("Informe o seu e-mail ou CPF e a senha para realizar o login!");
+                // Validação das entradas
+                if (string.IsNullOrEmpty(emailCpf) && string.IsNullOrEmpty(senha))
+                {
+                    return BadRequest(new Retorno
+                    {
+                        Sucesso = false,
+                        Mensagem = "Informe o seu e-mail ou CPF e a senha para realizar o login!"
+                    });
+                }
+                if (string.IsNullOrEmpty(emailCpf))
+                {
+                    return BadRequest(new Retorno
+                    {
+                        Sucesso = false,
+                        Mensagem = "Informe o seu e-mail ou CPF para realizar o login!"
+                    });
+                }
+                if (string.IsNullOrEmpty(senha))
+                {
+                    return BadRequest(new Retorno
+                    {
+                        Sucesso = false,
+                        Mensagem = "Informe sua senha para realizar o login!"
+                    });
+                }
+
+                // Tenta realizar o login
+                var loginSucesso = _pacienteService.Login(emailCpf, senha);
+
+                if (!loginSucesso)
+                {
+                    return Unauthorized(new Retorno
+                    {
+                        Sucesso = false,
+                        Mensagem = "E-mail/CPF ou senha inválidos."
+                    });
+                }
+
+                return Ok(new Retorno
+                {
+                    Sucesso = true,
+                    Mensagem = "Login realizado com sucesso."
+                });
             }
-            if (string.IsNullOrEmpty(emailCpf))
+            catch (Exception ex)
             {
-                throw new ArgumentException("Informe o seu e-mail ou CPF para realizar o login!");
+                return StatusCode(500, new Retorno
+                {
+                    Sucesso = false,
+                    Mensagem = $"Erro ao efetuar o login: {ex.Message}"
+                });
             }
-            if (string.IsNullOrEmpty(senha))
-            {
-                throw new ArgumentException("Informe sua senha para realizar o login!");
-            }
-            
-            return _pacienteService.Login(emailCpf, senha);
         }
 
         [HttpGet("ListarMedicos")]

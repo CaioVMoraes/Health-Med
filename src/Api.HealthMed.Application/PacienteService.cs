@@ -28,10 +28,16 @@ namespace Api.HealthMed.Application
 
         public bool Login(string emailCpf, string senha)
         {
-            ArgumentNullException.ThrowIfNullOrEmpty(senha);
-            senha = StringHelper.Criptografar(senha);
+            string senhaHasheada = _pacienteRepository.GetSenha(emailCpf);
 
-            return _pacienteRepository.Login(emailCpf, senha);
+            if (StringHelper.VerificarSenha(senha, senhaHasheada))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public IEnumerable<Medico> ListarMedicos()

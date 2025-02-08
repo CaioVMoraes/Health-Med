@@ -10,5 +10,10 @@ namespace Api.HealthMed.Helpers
         {
             return HashPassword(text, WorkFactor);
         }
+
+        public static bool VerificarSenha(string senhaFornecida, string hashArmazenado)
+        {
+            return Verify(senhaFornecida, hashArmazenado);
+        }
     }
 }

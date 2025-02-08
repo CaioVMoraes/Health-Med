@@ -27,10 +27,16 @@ namespace Api.HealthMed.Application
 
         public bool Login(string crm, string senha)
         {
-            ArgumentNullException.ThrowIfNullOrEmpty(senha);
-            senha = StringHelper.Criptografar(senha);
+            string senhaHasheada = _medicoRepository.GetSenha(crm);
 
-            return _medicoRepository.Login(crm, senha);
+            if (StringHelper.VerificarSenha(senha, senhaHasheada))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool CadastrarHorario(ConsultaDisponivel consultaDisponivel)

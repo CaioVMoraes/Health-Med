@@ -19,16 +19,16 @@ namespace Api.HealthMed.Infrastructure.Repositories
                             VALUES (@Nome, @CPF, @CRM, @Email, @Senha, @Especializacao, GETDATE(), 1)"
             ;
 
-            return await conn.ExecuteAsync(query) > 0;
+            return await conn.ExecuteAsync(query, novoMedico) > 0;
         }
 
-        public bool Login(string crm, string senha)
+        public string GetSenha(string crm)
         {
             using IDbConnection conn = _dbConnection.AbrirConexao();
 
-            string query = @"SELECT COUNT(*) FROM Medico WITH (NOLOCK) WHERE CRM = @CRM AND Senha = @Senha";
+            string query = @"SELECT TOP 1 Senha FROM Medico WITH (NOLOCK) WHERE CRM = @CRM";
 
-            return conn.QueryFirstOrDefault<int>(query, new { @CRM = crm, @Senha = senha }) > 0;
+            return conn.QueryFirstOrDefault<string>(query, new { @CRM = crm }) ?? throw new UnauthorizedAccessException("Não foi possível localizar o usuário com esse CRM.");
         }
 
         public bool CadastrarHorario(ConsultaDisponivel consultaDisponivel)

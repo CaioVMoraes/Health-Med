@@ -1,3 +1,4 @@
+using Api.HealthMed.Domain.Settings;
 using Api.HealthMed.Infrastructure.Connection;
 using Api.HealthMed.Infrastructure.Interfaces.Connection;
 using Api.HealthMed.Infrastructure.Interfaces.Repositories;
@@ -8,8 +9,8 @@ namespace Api.HealthMed.DependencyInjection.Extensions.AddInfrastructureLayer;
 
 public static partial class AddInfrastructureLayerExtensions
 {
-    //public static IServiceCollection AddSettings(this IServiceCollection services) =>
-    //    services.AddBindedSettings<DbSettings>();
+    public static IServiceCollection AddSettings(this IServiceCollection services) =>
+        services.AddBindedSettings<DbSettings>();
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
@@ -20,6 +21,6 @@ public static partial class AddInfrastructureLayerExtensions
 
     public static IServiceCollection AddInfrastructure(this IServiceCollection services) =>
         services
-            //.AddSettings()
+            .AddSettings()
             .AddRepositories();
 }

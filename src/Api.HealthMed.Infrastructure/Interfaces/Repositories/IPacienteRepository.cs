@@ -5,7 +5,7 @@ namespace Api.HealthMed.Infrastructure.Interfaces.Repositories
     public interface IPacienteRepository
     {
         bool Cadastrar(Paciente novoPaciente);
-        bool Login(string emailCpf, string senha);
+        string GetSenha(string emailCpf);
         IEnumerable<Medico> ListarMedicos();
         bool CadastrarAgendamento(Agendamento agendamento);
     }
