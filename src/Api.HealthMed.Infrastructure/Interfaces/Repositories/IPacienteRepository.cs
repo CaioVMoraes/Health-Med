@@ -8,5 +8,6 @@ namespace Api.HealthMed.Infrastructure.Interfaces.Repositories
         string GetSenha(string emailCpf);
         IEnumerable<Medico> ListarMedicos();
         bool CadastrarAgendamento(Agendamento agendamento);
+        bool CancelaAgendamento(Agendamento agendamento);
     }
 }

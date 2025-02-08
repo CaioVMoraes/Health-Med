@@ -8,5 +8,6 @@ namespace Api.HealthMed.Infrastructure.Interfaces.Repositories
         string GetSenha(string crm);
         bool CadastrarConsulta(ConsultaDisponivel consultaDisponivel);
         bool EditarConsulta(ConsultaDisponivel consultaDisponivel);
+        bool AceitaRecusaAgendamento(Agendamento agendamento);
     }
 }

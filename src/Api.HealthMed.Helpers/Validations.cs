@@ -110,5 +110,23 @@ namespace Api.HealthMed.Helpers
             if (!DateHelper.ValidarData(consulta.DataHora, dataMinima, dataMaxima))
                 throw new DataConsultaInvalidaException();
         }
+
+        public static void ValidarAgendamento(Agendamento agendamento)
+        {
+            if (agendamento is null)
+                throw new AgendamentoInvalidoException();
+
+            if (agendamento.IdPaciente <= 0)
+                throw new PacienteVazioException();
+
+            if (agendamento.IdMedico <= 0)
+                throw new MedicoVazioException();
+
+            if (agendamento.IdConsulta <= 0)
+                throw new HorarioConsultaInvalidoException();
+
+            if (agendamento.PacienteCancelou && string.IsNullOrEmpty(agendamento.JustifcativaCancelamento))
+                throw new JustificativaCancelouAgendamentoVaziaException();
+        }
     }
 }

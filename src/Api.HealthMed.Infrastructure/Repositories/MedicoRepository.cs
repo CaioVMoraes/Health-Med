@@ -82,5 +82,20 @@ namespace Api.HealthMed.Infrastructure.Repositories
 
             return conn.Execute(query, consultaDisponivel) > 0;
         }
+
+        public bool AceitaRecusaAgendamento(Agendamento agendamento)
+        {
+            using IDbConnection conn = _dbConnection.AbrirConexao();
+
+            string query = @"
+                            UPDATE Agendamento
+                               SET MedicoAceitou = @MedicoAceitou
+                                  ,MedicoRecusou = @MedicoRecusou
+                                  ,DataAtualizacaoMedico = GETDATE()
+                             WHERE Id = @Id"
+            ;
+
+            return conn.Execute(query, agendamento) > 0;
+        }
     }
 }

@@ -8,5 +8,7 @@ namespace Api.HealthMed.Domain
         public bool Disponivel { get; set; }
         public decimal ValorConsulta { get; set; }
         public bool Ativo { get; set; }
+        public DateTime DataCadastro { get; set; }
+        public DateTime DataAtualizacao { get; set; }
     }
 }

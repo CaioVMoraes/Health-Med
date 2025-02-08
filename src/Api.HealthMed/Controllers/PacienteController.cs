@@ -110,5 +110,11 @@ namespace Api.HealthMed.Controllers
         {
             return _pacienteService.CadastrarAgendamento(agendamento);
         }
+
+        [HttpPut("CancelaAgendamento")]
+        public bool CancelaAgendamento(Agendamento agendamento)
+        {
+            return _pacienteService.CancelaAgendamento(agendamento);
+        }
     }
 }

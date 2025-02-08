@@ -52,5 +52,12 @@ namespace Api.HealthMed.Application
 
             return _medicoRepository.EditarConsulta(consultaDisponivel);
         }
+
+        public bool AceitaRecusaAgendamento(Agendamento agendamento)
+        {
+            Validations.ValidarAgendamento(agendamento);
+
+            return _medicoRepository.AceitaRecusaAgendamento(agendamento);
+        }
     }
 }

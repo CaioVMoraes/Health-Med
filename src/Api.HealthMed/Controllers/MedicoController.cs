@@ -142,5 +142,28 @@ namespace Api.HealthMed.Controllers
                 });
             }
         }
+
+        [HttpPut("AceitaRecusaAgendamento")]
+        public ActionResult<Retorno> AceitaRecusaAgendamento(Agendamento agendamento)
+        {
+            try
+            {
+                _medicoService.AceitaRecusaAgendamento(agendamento);
+
+                return Ok(new Retorno
+                {
+                    Sucesso = true,
+                    Mensagem = "Consulta atualizada com sucesso."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new Retorno
+                {
+                    Sucesso = false,
+                    Mensagem = $"Erro ao atualizar a consulta: {ex.Message}"
+                });
+            }
+        }
     }
 }

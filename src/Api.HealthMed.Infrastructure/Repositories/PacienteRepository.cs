@@ -49,7 +49,11 @@ namespace Api.HealthMed.Infrastructure.Repositories
             using IDbConnection conn = _dbConnection.AbrirConexao();
 
             string query = @"SELECT
-                                *
+                                Id,
+                                Nome,
+                                CRM,
+                                Email,
+                                Especializacao
                              FROM
                                 Medico WITH (NOLOCK)
                              WHERE
@@ -57,6 +61,9 @@ namespace Api.HealthMed.Infrastructure.Repositories
                                     SELECT * FROM ConsultaDisponivel WITH (NOLOCK)
                                     WHERE ConsultaDisponivel.IdMedico = Medico.Id AND Disponivel = 1 AND ConsultaDisponivel.DataHora >= DATEADD(day, 1, GETDATE())
                                 )
+                                AND Ativo = 1
+                             ORDER BY
+                                Nome
                             ";
 
             return conn.Query<Medico>(query);
@@ -64,7 +71,47 @@ namespace Api.HealthMed.Infrastructure.Repositories
 
         public bool CadastrarAgendamento(Agendamento agendamento)
         {
-            return false;
+            using IDbConnection conn = _dbConnection.AbrirConexao();
+
+            string query = @"
+                            INSERT INTO [dbo].[Agendamento]
+                                   (IdPaciente
+                                   ,IdMedico
+                                   ,IdConsulta
+                                   ,MedicoAceitou
+                                   ,MedicoRecusou
+                                   ,PacienteCancelou
+                                   ,JustificativaCancelamento
+                                   ,Ativo
+                                   ,DataCadastro)
+                             VALUES
+                                   (@IdPaciente
+                                   ,@IdMedico
+                                   ,@IdConsulta
+                                   ,@MedicoAceitou
+                                   ,@MedicoRecusou
+                                   ,@PacienteCancelou
+                                   ,@JustificativaCancelamento
+                                   ,1
+                                   ,GETDATE())"
+            ;
+
+            return conn.Execute(query, agendamento) > 0;
+        }
+
+        public bool CancelaAgendamento(Agendamento agendamento)
+        {
+            using IDbConnection conn = _dbConnection.AbrirConexao();
+
+            string query = @"
+                            UPDATE Agendamento
+                               SET PacienteCancelou = @PacienteCancelou
+                                  ,JustificativaCancelamento = @JustificativaCancelamento
+                                  ,DataAtualizacao = GETDATE()
+                             WHERE Id = @Id"
+            ;
+
+            return conn.Execute(query, agendamento) > 0;
         }
     }
 }

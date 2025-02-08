@@ -47,7 +47,16 @@ namespace Api.HealthMed.Application
 
         public bool CadastrarAgendamento(Agendamento agendamento)
         {
+            Validations.ValidarAgendamento(agendamento);
+
             return _pacienteRepository.CadastrarAgendamento(agendamento);
+        }
+
+        public bool CancelaAgendamento(Agendamento agendamento)
+        {
+            Validations.ValidarAgendamento(agendamento);
+
+            return _pacienteRepository.CancelaAgendamento(agendamento);
         }
     }
 }
