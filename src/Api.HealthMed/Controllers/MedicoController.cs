@@ -24,19 +24,23 @@ namespace Api.HealthMed.Controllers
             return Ok("Médico cadastrado com sucesso!");
         }
 
-
-
         [HttpPost("Login")]
-        public bool Login(Medico medico)
+        public bool Login(string crm, string senha)
         {
-            ArgumentNullException.ThrowIfNullOrEmpty(medico.Senha);
-
-            if (string.IsNullOrEmpty(medico.CPF) && string.IsNullOrEmpty(medico.Email) && string.IsNullOrEmpty(medico.CRM))
+            if (string.IsNullOrEmpty(crm) && string.IsNullOrEmpty(senha))
             {
-                throw new ArgumentException("Informe o e-mail ou CPF ou CRM para realizar o login!");
+                throw new ArgumentException("Informe o CRM e a senha para realizar o login!");
+            }
+            if (string.IsNullOrEmpty(crm))
+            {
+                throw new ArgumentException("Informe o seu CRM para realizar o login!");
+            }
+            if (string.IsNullOrEmpty(senha))
+            {
+                throw new ArgumentException("Informe sua senha para realizar o login!");
             }
 
-            return _medicoService.Login(medico);
+            return _medicoService.Login(crm, senha);
         }
 
         [HttpPost("CadastrarHorario")]

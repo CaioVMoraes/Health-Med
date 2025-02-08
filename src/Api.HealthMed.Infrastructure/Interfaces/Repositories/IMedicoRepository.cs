@@ -4,8 +4,8 @@ namespace Api.HealthMed.Infrastructure.Interfaces.Repositories
 {
     public interface IMedicoRepository
     {
-        Task<int> CadastrarMedico(Medico novoMedico);
-        bool Login(Medico medico);
+        Task<bool> CadastrarMedico(Medico novoMedico);
+        bool Login(string crm, string senha);
         bool CadastrarHorario(ConsultaDisponivel consultaDisponivel);
         bool EditarHorario(ConsultaDisponivel consultaDisponivel);
     }

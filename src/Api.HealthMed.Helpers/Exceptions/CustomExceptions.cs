@@ -30,6 +30,7 @@
         public class CPFInvalidoException() : Exception(message: $"O CPF é inválido!");
 
         public class MedicoInvalidoException() : Exception(message: $"Os dados do médico estão inválidos!");
+        public class PacienteInvalidoException() : Exception(message: $"Os dados do paciente estão inválidos!");
 
 
     }

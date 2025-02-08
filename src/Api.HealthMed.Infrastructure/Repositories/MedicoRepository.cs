@@ -10,7 +10,7 @@ namespace Api.HealthMed.Infrastructure.Repositories
     {
         private readonly IDatabaseConnection _dbConnection = dbConnection;
 
-        public async Task<int> CadastrarMedico(Medico novoMedico)
+        public async Task<bool> CadastrarMedico(Medico novoMedico)
         {
             using IDbConnection conn = _dbConnection.AbrirConexao();
 
@@ -19,12 +19,16 @@ namespace Api.HealthMed.Infrastructure.Repositories
                             VALUES (@Nome, @CPF, @CRM, @Email, @Senha, @Especializacao, GETDATE(), 1)"
             ;
 
-            return await conn.QuerySingleAsync<int>(query);
+            return await conn.ExecuteAsync(query) > 0;
         }
 
-        public bool Login(Medico medico)
+        public bool Login(string crm, string senha)
         {
-            return false;
+            using IDbConnection conn = _dbConnection.AbrirConexao();
+
+            string query = @"SELECT COUNT(*) FROM Medico WITH (NOLOCK) WHERE CRM = @CRM AND Senha = @Senha";
+
+            return conn.QueryFirstOrDefault<int>(query, new { @CRM = crm, @Senha = senha }) > 0;
         }
 
         public bool CadastrarHorario(ConsultaDisponivel consultaDisponivel)

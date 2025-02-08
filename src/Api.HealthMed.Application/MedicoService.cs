@@ -10,27 +10,27 @@ namespace Api.HealthMed.Application
     {
         private readonly IMedicoRepository _medicoRepository = medicoRepository;
 
-        public async Task<int> CadastrarMedico(Medico novoMedico)
+        public async Task<bool> CadastrarMedico(Medico novoMedico)
         {
             Validations.ValidarMedico(novoMedico);
 
-            if (!Validations.ValidarCPF(novoMedico.CPF))
+            if (!Validations.ValidarCPF(novoMedico.CPF!))
                 throw new CPFInvalidoException();
 
-            if (!Validations.ValidarEmail(novoMedico.Email))
+            if (!Validations.ValidarEmail(novoMedico.Email!))
                 throw new EmailInvalidoException();
 
-            novoMedico.Senha = StringHelper.Criptografar(novoMedico.Senha);
+            novoMedico.Senha = StringHelper.Criptografar(novoMedico.Senha!);
 
             return await _medicoRepository.CadastrarMedico(novoMedico);
         }
 
-        public bool Login(Medico medico)
+        public bool Login(string crm, string senha)
         {
-            ArgumentNullException.ThrowIfNullOrEmpty(medico.Senha);
-            medico.Senha = StringHelper.Criptografar(medico.Senha);
+            ArgumentNullException.ThrowIfNullOrEmpty(senha);
+            senha = StringHelper.Criptografar(senha);
 
-            return _medicoRepository.Login(medico);
+            return _medicoRepository.Login(crm, senha);
         }
 
         public bool CadastrarHorario(ConsultaDisponivel consultaDisponivel)

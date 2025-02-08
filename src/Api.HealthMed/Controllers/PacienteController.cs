@@ -25,16 +25,22 @@ namespace Api.HealthMed.Controllers
         }
 
         [HttpPost("Login")]
-        public bool Login(Paciente paciente)
+        public bool Login(string emailCpf, string senha)
         {
-            ArgumentNullException.ThrowIfNullOrEmpty(paciente.Senha);
-
-            if (string.IsNullOrEmpty(paciente.CPF) && string.IsNullOrEmpty(paciente.Email))
+            if (string.IsNullOrEmpty(emailCpf) && string.IsNullOrEmpty(senha))
             {
-                throw new ArgumentException("Informe o e-mail ou CPF para realizar o login!");
+                throw new ArgumentException("Informe o seu e-mail ou CPF e a senha para realizar o login!");
             }
-
-            return _pacienteService.Login(paciente);
+            if (string.IsNullOrEmpty(emailCpf))
+            {
+                throw new ArgumentException("Informe o seu e-mail ou CPF para realizar o login!");
+            }
+            if (string.IsNullOrEmpty(senha))
+            {
+                throw new ArgumentException("Informe sua senha para realizar o login!");
+            }
+            
+            return _pacienteService.Login(emailCpf, senha);
         }
 
         [HttpGet("ListarMedicos")]

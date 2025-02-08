@@ -55,6 +55,9 @@ namespace Api.HealthMed.Helpers
 
         public static void ValidarMedico(Medico medico)
         {
+            if (medico is null)
+                throw new MedicoInvalidoException();
+
             if (string.IsNullOrWhiteSpace(medico.Nome))
                 throw new NomeVazioException();
 
@@ -76,6 +79,9 @@ namespace Api.HealthMed.Helpers
 
         public static void ValidarPaciente(Paciente paciente)
         {
+            if (paciente is null)
+                throw new PacienteInvalidoException();
+
             if (string.IsNullOrWhiteSpace(paciente.Nome))
                 throw new NomeVazioException();
 
