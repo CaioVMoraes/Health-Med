@@ -23,7 +23,7 @@ namespace Api.HealthMed.Controllers
         {
             try
             {
-                _medicoService.CadastrarMedico(novoMedico);
+                _medicoService.Cadastrar(novoMedico);
                 return Created(string.Empty, new Retorno
                 {
                     Sucesso = true,

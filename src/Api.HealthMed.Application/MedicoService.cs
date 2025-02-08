@@ -10,7 +10,7 @@ namespace Api.HealthMed.Application
     {
         private readonly IMedicoRepository _medicoRepository = medicoRepository;
 
-        public async Task<bool> CadastrarMedico(Medico novoMedico)
+        public bool Cadastrar(Medico novoMedico)
         {
             Validations.ValidarMedico(novoMedico);
 
@@ -22,7 +22,7 @@ namespace Api.HealthMed.Application
 
             novoMedico.Senha = StringHelper.Criptografar(novoMedico.Senha!);
 
-            return await _medicoRepository.CadastrarMedico(novoMedico);
+            return _medicoRepository.Cadastrar(novoMedico);
         }
 
         public bool Login(string crm, string senha)

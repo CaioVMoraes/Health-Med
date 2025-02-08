@@ -342,3 +342,5 @@ healthchecksdb
 # SonarQube
 .sonarqube/
 sonarqubecoverage/
+/src/Api.HealthMed/appsettings.Development.json
+/src/Api.HealthMed/appsettings.json

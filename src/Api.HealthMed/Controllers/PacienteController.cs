@@ -1,3 +1,4 @@
+using Api.HealthMed.Application;
 using Api.HealthMed.Application.Interfaces.Services;
 using Api.HealthMed.Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -20,8 +21,23 @@ namespace Api.HealthMed.Controllers
         [HttpPost("Cadastrar")]
         public IActionResult Cadastrar(Paciente novoPaciente)
         {
-            _pacienteService.Cadastrar(novoPaciente);
-            return Ok("Médico cadastrado com sucesso!");
+            try
+            {
+                _pacienteService.Cadastrar(novoPaciente);
+                return Created(string.Empty, new Retorno
+                {
+                    Sucesso = true,
+                    Mensagem = "Paciente cadastrado com sucesso."
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new Retorno
+                {
+                    Sucesso = false,
+                    Mensagem = $"Erro ao cadastrar paciente: {ex.Message}"
+                });
+            }
         }
 
         [HttpPost("Login")]

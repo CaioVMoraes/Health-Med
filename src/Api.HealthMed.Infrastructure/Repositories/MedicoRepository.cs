@@ -10,16 +10,32 @@ namespace Api.HealthMed.Infrastructure.Repositories
     {
         private readonly IDatabaseConnection _dbConnection = dbConnection;
 
-        public async Task<bool> CadastrarMedico(Medico novoMedico)
+        public bool Cadastrar(Medico novoMedico)
         {
             using IDbConnection conn = _dbConnection.AbrirConexao();
 
             string query = @"
-                            INSERT INTO Medico (Nome, CPF, CRM, Email, Senha, Especializacao, DataCadastro, Ativo) 
-                            VALUES (@Nome, @CPF, @CRM, @Email, @Senha, @Especializacao, GETDATE(), 1)"
+                            INSERT INTO Medico
+                                    (Nome,
+                                     CPF,
+                                     CRM,
+                                     Email,
+                                     Senha,
+                                     Especializacao,
+                                     DataCadastro,
+                                     Ativo) 
+                                VALUES
+                                    (@Nome,
+                                     @CPF,
+                                     @CRM,
+                                     @Email,
+                                     @Senha,
+                                     @Especializacao,
+                                     GETDATE(),
+                                     1)"
             ;
 
-            return await conn.ExecuteAsync(query, novoMedico) > 0;
+            return conn.Execute(query, novoMedico) > 0;
         }
 
         public string GetSenha(string crm)

@@ -13,7 +13,26 @@ namespace Api.HealthMed.Infrastructure.Repositories
 
         public bool Cadastrar(Paciente novoPaciente)
         {
-            return false;
+            using IDbConnection conn = _dbConnection.AbrirConexao();
+
+            string query = @"
+                            INSERT INTO Paciente
+                                   (Nome
+                                   ,CPF
+                                   ,Email
+                                   ,Senha
+                                   ,DataCadastro
+                                   ,Ativo)
+                             VALUES
+                                   (@Nome
+                                   ,@CPF
+                                   ,@Email
+                                   ,@Senha
+                                   ,GETDATE()
+                                   ,1)"
+            ;
+
+            return conn.Execute(query, novoPaciente) > 0;
         }
 
         public string GetSenha(string emailCpf)
